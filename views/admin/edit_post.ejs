@@ -1,0 +1,15 @@
+<a href="/dashboard" class="back-button">← Back to Dashboard</a>
+
+<div class="admin-title">
+  <h2 class="admin-title__heading">Edit Post</h2>
+</div>
+
+<form action="/edit_post/<%= data._id %>?_method=PUT" method="POST" class="admin-form">
+  <label for="title" class="admin-form__label"><b>Title</b></label>
+  <input type="text" placeholder="Post Title" name="title" value="<%= data.title %>" class="admin-form__input" required>
+
+  <label for="body" class="admin-form__label"><b>Content</b></label>
+  <textarea placeholder="Post body" name="body" class="admin-form__textarea" required><%= data.body %></textarea>
+
+  <input type="submit" value="Edit" class="btn">
+</form>

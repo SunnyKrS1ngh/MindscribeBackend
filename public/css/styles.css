@@ -1,0 +1,748 @@
+/* Header styles */
+.header {
+    background-color: #333;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header_container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Logo styles */
+  .header_logo {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* Navigation styles */
+  .header_nav {
+    display: flex;
+  }
+  
+  .nav_list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav_item {
+    margin-left: 20px;
+  }
+  
+  .nav_link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav_link:hover {
+    color: #ff9800;
+  }
+  
+  /* Search button styles */
+  .header_button .searchBtn {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header_button .searchBtn:hover {
+    background-color: #e68900;
+  }
+  
+
+  /* Admin Header Styles */
+.admin-header {
+    background-color: #2c3e50;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .admin-header_container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Logo styles */
+  .header_logo {
+    color: #ecf0f1;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  /* Navigation styles */
+  .header_nav {
+    display: flex;
+  }
+  
+  .nav_list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav_item {
+    margin-left: 20px;
+  }
+  
+  .nav_link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav_link:hover {
+    color: #3498db;
+  }
+  
+  /* Logout button styles */
+  .header_button .logoutBtn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header_button .logoutBtn:hover {
+    background-color: #c0392b;
+  }
+  
+/* General Reset */
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height of the viewport */
+  }
+  
+  main {
+    flex: 1; /* Allows the main content to grow and fill available space */
+  }
+  
+  /* Footer Styles */
+  .footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    margin-top: auto; /* Pushes the footer to the bottom */
+  }
+  
+  .footer_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .footer_text {
+    font-size: 1rem;
+    margin: 0;
+    color: #ecf0f1;
+    transition: color 0.3s ease;
+  }
+  
+  .footer_text:hover {
+    color: #ff9800;
+  }
+  
+
+  /* Author Section Styles */
+.author {
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  .author__heading {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Articles Section Styles */
+  .articles {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .articles__heading {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ff9800;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  /* Article List Styles */
+  .article-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .article-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .article-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .article-title {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .article-date {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  .article-item:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .articles__heading {
+      font-size: 1.5rem;
+    }
+  
+    .article-title {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Post Title Styles */
+.post-title {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ff9800;
+    line-height: 1.3;
+  }
+  
+  /* Post Body Styles */
+  .post-body {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 0 15px;
+    text-align: justify;
+  }
+  
+  /* About Section Styles */
+.about {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .about__heading {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .about__text {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  /* Social Links Styles */
+  .social-links {
+    margin-top: 20px;
+  }
+  
+  .social-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .social-link i {
+    margin-right: 8px;
+    font-size: 1.5rem;
+  }
+  
+  .social-link:hover {
+    color: #ff9800;
+  }
+  
+  /* Sign-In Section Styles */
+.sign-in {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .sign-in__heading {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .sign-in__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .sign-in__label {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  .sign-in__input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .sign-in__input:focus {
+    border-color: #ff9800;
+    outline: none;
+  }
+  
+  /* Button Styles */
+  .btn {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #e67e22;
+  }
+  
+  /* Subtext and Link Styles */
+  .sign-in__subtext {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .sign-in__link {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .sign-in__link:hover {
+    color: #e67e22;
+  }
+  
+  /* Register Section Styles */
+.register {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.register__heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register__label {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.register__input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.register__input:focus {
+  border-color: #ff9800;
+  outline: none;
+}
+
+/* Button Styles (re-use the same styles from the sign-in form) */
+.btn {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e67e22;
+}
+
+/* Subtext and Link Styles */
+.register__subtext {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.register__link {
+  color: #ff9800;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register__link:hover {
+  color: #e67e22;
+}
+
+/* Admin Title Section Styles */
+.admin-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-title__heading {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.button {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #e67e22;
+}
+
+/* Admin Posts List Styles */
+.admin-posts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-posts__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s ease;
+}
+
+.admin-posts__item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-posts__link {
+  font-size: 1.2rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.admin-posts__link:hover {
+  text-decoration: underline;
+}
+
+/* Admin Post Controls Styles */
+.admin-post-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-post-controls__btn {
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-post-controls__btn--delete {
+  background-color: #f44336;
+}
+
+.admin-post-controls__btn:hover {
+  background-color: #1e88e5;
+}
+
+.admin-post-controls__btn--delete:hover {
+  background-color: #e53935;
+}
+
+.admin-post-controls__form {
+  display: inline;
+  margin: 0;
+}
+
+/* Back Link Style */
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #2196f3;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Admin Title Section Styles */
+.admin-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.admin-title__heading {
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Admin Form Styles */
+.admin-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form__label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.admin-form__input, .admin-form__textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+.admin-form__input:focus, .admin-form__textarea:focus {
+  border-color: #ff9800;
+  outline: none;
+}
+
+.admin-form__textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Button Styles */
+.btn {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e67e22;
+}
+
+/* Enhanced Back Button Style */
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #fff;
+  background-color: #2196f3;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #1e88e5;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.back-button:active {
+  background-color: #1976d2;
+  transform: translateY(0);
+}
+
+/* Admin Title Section Styles */
+.admin-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.admin-title__heading {
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Admin Form Styles */
+.admin-form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form__label {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.admin-form__input, .admin-form__textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+
+.admin-form__input:focus, .admin-form__textarea:focus {
+  border-color: #ff9800;
+  outline: none;
+}
+
+.admin-form__textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Button Styles */
+.btn {
+  background-color: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e67e22;
+}

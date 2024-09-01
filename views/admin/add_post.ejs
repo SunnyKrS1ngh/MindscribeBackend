@@ -1,0 +1,15 @@
+<a href="/dashboard" class="back-link">Back</a>
+
+<div class="admin-title">
+  <h2 class="admin-title__heading">Add New Post</h2>
+</div>
+
+<form action="/add_post" method="POST" class="admin-form">
+  <label for="title" class="admin-form__label"><b>Title</b></label>
+  <input type="text" placeholder="Post Title" name="title" class="admin-form__input" required>
+
+  <label for="body" class="admin-form__label"><b>Content</b></label>
+  <textarea placeholder="Post body" name="body" class="admin-form__textarea" required></textarea>
+
+  <input type="submit" value="Add" class="btn">
+</form>

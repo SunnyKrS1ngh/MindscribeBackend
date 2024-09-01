@@ -1,0 +1,18 @@
+<div class="author">
+  <h1 class="author__heading">Discover. Reflect. Connect.</h1>
+</div>
+
+<section class="articles">
+  <h2 class="articles__heading">Latest Posts</h2>
+
+  <ul class="article-ul">
+    <% data.forEach(post => { %>
+      <li class="article-item">
+        <a href="/postall/<%= post._id %>" class="article-link">
+          <span class="article-title"><%= post.title %></span>
+          <span class="article-date"><%= post.createdAt.toDateString() %></span>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</section>
