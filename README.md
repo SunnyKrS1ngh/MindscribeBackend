@@ -1,1 +1,1 @@
-#Bloggin Website made with NodeJS, mongodb
+Blogging Website made with NodeJS, mongodb
