@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-    origin: 'http://localhost:3000',  // Allow requests from this origin (frontend)
+    origin: 'https://mindscribefrontend.onrender.com',  // Allow requests from this origin (frontend)
     credentials: true
 }));
 
