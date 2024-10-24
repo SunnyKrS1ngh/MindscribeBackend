@@ -10,6 +10,14 @@ const postSchema = new Schema({
         type:String,
         required:true
     },
+    author:{
+        type:String,
+        required:true
+    },
+    private:{
+        type:Boolean,
+        required:true
+    },
     createdAt:{
         type: Date,
         default: Date.now

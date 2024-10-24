@@ -19,6 +19,7 @@ const authMiddleware = (req,res,next)=>{
     try{
         const decoded = jwt.verify(token,jwtsecret);
         req.userId = decoded.userId;
+        req.username = decoded.username;
         next();
     }catch(error){
         res.status(401).json({message:'some error occured with decoding'});
@@ -35,11 +36,21 @@ router.get('/admin/login',async (req,res)=>{
 router.get('/postpriv/:id',async (req,res)=>{
     //res.render('index');
     try{
+        console.log('post request receieved');
         const id = req.params.id;
         const data = await post.findById({_id:id});
-        res.render('post',{data,layout:adminLayout});
+
+        // Check if a document was deleted
+        if (!data) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        
+        res.status(200).json({ post: data });
+
+        //res.render('post',{data,layout:adminLayout});
     }catch(err){
         console.log(err);
+        res.status(500).json({ message: 'Failed to delete post', err });
     }
 })
 
@@ -68,6 +79,9 @@ router.post('/admin',async (req,res)=>{
         const {username,password} = req.body;
         //console.log(username,password);
         const User = await user.findOne({username});
+        console.log(username);
+        console.log(password);
+        console.log(User);
         if(!User){
             return res.status(401).json({message:'username not found'});
         }
@@ -75,11 +89,15 @@ router.post('/admin',async (req,res)=>{
         if(password!=User.password){
             return res.status(401).json({message:'Password incorrect'});
         }
-        const token = jwt.sign({userId:User._id},jwtsecret);
+        const token = jwt.sign({userId:User._id,username: User.username},jwtsecret);
         res.cookie('token',token,{httpOnly:true});
+        console.log('response sent from backend')
 
+        console.log('Login successful for user:', username);
+        // Send back a success response
+        return res.status(200).json({ message: 'Login successful', user: { username: User.username } });
 
-        res.redirect('/dashboard');
+        //res.redirect(`/dashboard?username=${username}`);
     }catch(err){
         console.log(err);
     }
@@ -91,8 +109,13 @@ router.get('/dashboard',authMiddleware, async (req,res)=>{
     //res.render('index');
 
     try{
-        const data = await post.find();
-        res.render('admin/dashboard',{data,layout:adminLayout});
+        const username = req.username;
+        console.log('kdjfos ad jfjij');
+        const mydata = await post.find({author:username});
+        const pubdata = await post.find({private:false});
+        console.log(mydata);
+        res.json({my:mydata,pub:pubdata});
+        //res.render('admin/dashboard',{mydata,pubdata,username,layout:adminLayout});
     }catch(error){
         res.json({message:'failed to retrieve posts'});
     }
@@ -159,10 +182,14 @@ router.post('/add_post',authMiddleware,async (req,res)=>{
 
     try{
         console.log(req.body);
+        const username = req.username;
+        const isPrivate = req.body.private === true;
         try {
             const newPost = new post({
                 title: req.body.title,
-                body: req.body.body
+                body: req.body.body,
+                author:req.username,
+                private:isPrivate
             });
             await post.create(newPost);
             res.redirect('/dashboard');
@@ -172,6 +199,7 @@ router.post('/add_post',authMiddleware,async (req,res)=>{
     }catch(error){
         console.log(error);
     }
+    //console.log(req.username);
 });
 
 //GET edit-post
@@ -181,7 +209,7 @@ router.get('/edit_post/:id',authMiddleware,async (req,res)=>{
     try {
         const id = req.params.id;
         const data = await post.findById({_id:id});
-        res.render('admin/edit_post',{data,layout:adminLayout});
+        //res.render('admin/edit_post',{data,layout:adminLayout});
     } catch (error) {
         console.log(error);
     }
@@ -190,42 +218,71 @@ router.get('/edit_post/:id',authMiddleware,async (req,res)=>{
 })
 
 //PUT edit-post
-router.put('/edit_post/:id',authMiddleware,async (req,res)=>{
-    //res.render('index');
-    
+
+router.put('/edit_post/:id', authMiddleware, async (req, res) => {
     try {
-        await post.findByIdAndUpdate(req.params.id,{
-            title:req.body.title,
-            body:req.body.body,
+        // Attempt to find and update the post
+        const updatedPost = await post.findByIdAndUpdate(req.params.id, {
+            title: req.body.title,
+            body: req.body.body,
             updatedAt: Date.now()
-        });
-        res.redirect('/dashboard');
+        }, { new: true }); // { new: true } returns the updated document
+
+        // Check if the post was found and updated
+        console.log(updatedPost);
+        if (!updatedPost) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        // Respond with the updated post
+        res.status(200).json(updatedPost);
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        res.status(500).json({ message: 'Error updating post' });
     }
+});
 
-    
-})
 
-//DELETE post
-router.delete('/delete_post/:id',authMiddleware,async (req,res)=>{
-    //res.render('index');
-    
+// DELETE post
+router.delete('/delete_post/:id', authMiddleware, async (req, res) => {
     try {
-        await post.deleteOne({_id: req.params.id});
-        res.redirect('/dashboard');
+        console.log(req.params.id);
+        const result = await post.deleteOne({ _id: req.params.id });
+        
+        // Check if a document was deleted
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        
+        res.status(200).json({ message: 'Post deleted successfully' });
     } catch (error) {
-        console.log(error);
+        console.error(error); // Log error for server-side debugging
+        res.status(500).json({ message: 'Failed to delete post', error });
     }
-    
-})
+});
 
-router.get('/logout',authMiddleware,async (req,res)=>{
-    //res.render('index');
+router.get('/logout', authMiddleware, async (req, res) => {
+    try {
+        // Clear the authentication cookie
+        res.clearCookie('token');
 
-    res.clearCookie('token');
-    res.redirect('/admin');
-})
+        // Optionally, destroy the session if using express-session
+        // req.session.destroy(err => {
+        //     if (err) {
+        //         return res.status(500).json({ message: 'Could not log out' });
+        //     }
+        // });
+
+        // Send a success response or redirect as needed
+        res.status(200).json({ message: 'Logged out successfully' });
+        // or you can redirect to a specific page
+        // res.redirect('/admin');
+    } catch (error) {
+        console.error('Logout error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 
 
 module.exports = router;

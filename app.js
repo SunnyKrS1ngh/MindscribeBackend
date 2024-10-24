@@ -10,6 +10,13 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
 
+const cors = require('cors');
+
+const path = require('path');
+
+// Serve static React files from the public directory
+
+
 const app = express();
 const PORT = 5000||process.env.PORT;
 
@@ -18,7 +25,11 @@ connectDB();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({
+    origin: 'http://localhost:3000',  // Allow requests from this origin (frontend)
+    credentials: true
+}));
 
 app.use(methodOverride('_method'));
 
@@ -31,7 +42,7 @@ app.use(session({
     }),
 }));
 
-app.use(express.static('public'));
+
 
 //Engine
 app.use(expressLayout);
@@ -44,3 +55,8 @@ app.use('/',require('./server/routes/admin'));
 app.listen(PORT,()=>{
     console.log(`listening on port ${PORT}`);
 });
+// In your Express server (app.js or server.js)
+
+
+
+// Your existing routes...

@@ -11,8 +11,8 @@ router.get('',async (req,res)=>{
     //res.render('index');
 
     try{
-        const data = await post.find();
-        res.render('index',{data})
+        
+        res.render('index')
     }catch(err){
         console.log(err);
     }
