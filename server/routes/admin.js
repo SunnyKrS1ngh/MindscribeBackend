@@ -63,7 +63,8 @@ router.get('/admin',async (req,res)=>{
     if(token){
         res.redirect('/dashboard');
     }    
-        res.render('admin/login',{layout:adminLayout});
+        //res.render('admin/login',{layout:adminLayout});
+        res.status(500).json({ message: 'Not logged in' });
     }catch(err){
         console.log(err);
     }
@@ -162,12 +163,7 @@ router.post('/register',async (req,res)=>{
     }
 });
 
-//redirect to login page
-router.get('/dashboard',async (req,res)=>{
-    //res.render('index');
 
-    res.redirect('/admin/dashboard');
-})
 
 //GET add-post
 router.get('/add_post',authMiddleware,async (req,res)=>{
