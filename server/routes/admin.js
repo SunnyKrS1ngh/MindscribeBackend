@@ -91,7 +91,7 @@ router.post('/admin',async (req,res)=>{
             return res.status(401).json({message:'Password incorrect'});
         }
         const token = jwt.sign({userId:User._id,username: User.username},jwtsecret);
-        res.cookie('token',token,{httpOnly:true});
+        res.cookie('token',token,{httpOnly:true, sameSite:'none', secure:true});
         console.log('response sent from backend')
 
         console.log('Login successful for user:', username);
@@ -260,7 +260,7 @@ router.delete('/delete_post/:id', authMiddleware, async (req, res) => {
 router.get('/logout', authMiddleware, async (req, res) => {
     try {
         // Clear the authentication cookie
-        res.clearCookie('token');
+        res.clearCookie('token', { sameSite:'none', secure:true });
 
         // Optionally, destroy the session if using express-session
         // req.session.destroy(err => {
